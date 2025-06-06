@@ -9,11 +9,10 @@ jobs:
     steps:
       - name: Set variable
         id: step_1
-        run: echo "my_variable=Hola Mundo" >> $GITHUB_OUTPUT
+        run: echo "my_variable=Hola Mundo"
 
-      - name: Get message
-        run: |
-          cat $GITHUB_OUTPUT
+      - name: Get variable
+        run: echo "El valor de la variable es ${{ steps.step_1.outputs.my_variable }}"
 
   second-job:
     needs: first-job
