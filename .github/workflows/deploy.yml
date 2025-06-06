@@ -6,6 +6,9 @@ jobs:
   first-job:
     runs-on: ubuntu-latest
 
+    outputs:
+      salida: ${{ steps.step_1.outputs.my_variable }}
+
     steps:
       - name: Insert variable into output
         id: step_1
@@ -18,6 +21,9 @@ jobs:
     needs: first-job
     runs-on: ubuntu-latest
 
+    env:
+      SALIDA: ${{ needs.first-job.outputs.salida }}
+
     steps:
-      - name: Hola mundo
-        run: echo "Hola segundo mundo ${{ github.ref }}"
+      - name: Get output from first job
+        run: echo "The output from the first job is $SALIDA"
