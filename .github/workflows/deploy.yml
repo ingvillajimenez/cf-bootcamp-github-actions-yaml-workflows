@@ -10,8 +10,12 @@ jobs:
       NAME: CodigoFacilito
 
     steps:
-      - name: List files
-        run: echo $GITHUB_OUTPUT
+      - name: Set variable
+        id: step_1
+        run: echo "my_variable=Hola Mundo" >> $GITHUB_OUTPUT
+
+      - name: Get message
+        run: echo "${{ steps.step_1.outputs.my_variable }}"
 
   second-job:
     needs: first-job
