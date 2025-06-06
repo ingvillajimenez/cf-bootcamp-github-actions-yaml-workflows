@@ -13,8 +13,7 @@ jobs:
 
       - name: Get message
         run: |
-          cd $GITHUB_OUTPUT
-          ls -al 
+          cat $GITHUB_OUTPUT
           echo "${{ steps.step_1.outputs.my_variable }}"
 
   second-job:
