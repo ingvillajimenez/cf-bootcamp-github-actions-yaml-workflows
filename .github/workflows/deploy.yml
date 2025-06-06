@@ -10,8 +10,14 @@ jobs:
       NAME: CodigoFacilito
 
     steps:
-      - name: Hola mundo
-        run: echo "Hola primer mundo $NAME"
+      - name: List files
+        run: ls -la
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: List files again
+        run: ls -la
 
   second-job:
     needs: first-job
@@ -19,4 +25,4 @@ jobs:
 
     steps:
       - name: Hola mundo
-        run: echo "Hola segundo mundo ${{ github.REF }}"
+        run: echo "Hola segundo mundo ${{ github.ref }}"
