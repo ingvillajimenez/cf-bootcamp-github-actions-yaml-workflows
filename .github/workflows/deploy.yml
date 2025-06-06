@@ -6,9 +6,12 @@ jobs:
   first-job:
     runs-on: ubuntu-latest
 
+    env:
+      NAME: CodigoFacilito
+
     steps:
       - name: Hola mundo
-        run: echo "Hola mundo"
+        run: echo "Hola primer mundo $NAME"
 
   second-job:
     needs: first-job
@@ -16,4 +19,4 @@ jobs:
 
     steps:
       - name: Hola mundo
-        run: echo "Hola segundo mundo ${{ github.actor }}"
+        run: echo "Hola segundo mundo ${{ github.REF }}"
