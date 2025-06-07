@@ -10,20 +10,12 @@ jobs:
       salida: ${{ steps.step_1.outputs.my_variable }}
 
     steps:
-      - name: Insert variable into output
-        id: step_1
-        run: echo "my_variable=Hola Mundo" >> $GITHUB_OUTPUT
+      - name: Generate a file
+        run: |
+          echo "This is a test file" >> test.log
 
-      - name: Get variable value
-        run: echo "The variable value is ${{ steps.step_1.outputs.my_variable }}"
-
-  second-job:
-    needs: first-job
-    runs-on: ubuntu-latest
-
-    env:
-      SALIDA: ${{ needs.first-job.outputs.salida }}
-
-    steps:
-      - name: Get output from first job
-        run: echo "The output from the first job is $SALIDA"
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-artifact
+          path: test.log
